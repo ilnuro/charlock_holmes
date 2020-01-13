@@ -57,6 +57,7 @@ have_library 'icudata' or abort 'libicudata missing'
 # icu4c might be built in C++11 mode, but it also might not have been
 icuconfig = `which icu-config`.chomp if icuconfig.empty?
 if File.exist?(icuconfig) && `#{icuconfig} --cxxflags`.include?("c++11")
+  $CXXFLAGS ||= ''
   $CXXFLAGS << ' -std=c++11'
 end
 
